@@ -9,30 +9,29 @@ There is couple of helper method defined in addition to normal midilib methods (
 * play_midi
 
 Example usage:
-```
-load "~/midilib/sonicpi.rb"
 
-test_midi = ENV['HOME']+'/midilib/examples/pinnin_valssi.mid'
+  load "~/midilib/sonicpi.rb"
 
-use_bpm 120
+  test_midi = ENV['HOME']+'/midilib/examples/pinnin_valssi.mid'
 
-# Parse to hash
-midi_hash = midi_to_hash test_midi
+  use_bpm 120
 
-print midi_hash.keys
-print midi_hash
+  # Parse to hash
+  midi_hash = midi_to_hash test_midi
 
-2.times do
-  with_fx :reverb, room: 0.7 do
-    with_fx :wobble, phase: 1.0, smooth: 0.7, amp: 0.8 do
-      # Play directly or from preparsed hash
-      play_midi test_midi, [:chiplead, :chipbass]
+  print midi_hash.keys
+  print midi_hash
+
+  2.times do
+    with_fx :reverb, room: 0.7 do
+      with_fx :wobble, phase: 1.0, smooth: 0.7, amp: 0.8 do
+        # Play directly or from preparsed hash
+        play_midi test_midi, [:chiplead, :chipbass]
+      end
     end
+    # Midi tracks are played in separate threads so sleep until tracks are finished
+    sleep midi_hash[:track_lengths].max
   end
-  # Midi tracks are played in separate threads so sleep until tracks are finished
-  sleep midi_hash[:track_lengths].max
-end
-````
 
 For other thigs see minilib documentation:
 
