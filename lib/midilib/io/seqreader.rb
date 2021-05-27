@@ -1,6 +1,6 @@
-require 'midilib/io/midifile'
-require 'midilib/track'
-require 'midilib/event'
+require_relative  'midifile'
+require_relative  '../track'
+require_relative  '../event'
 
 module MIDI
 
@@ -26,12 +26,12 @@ module MIDI
       # again at the end of each track. There are three arguments to the
       # block: the track, the track number (1 through _n_), and the total
       # number of tracks.
-      def initialize(seq, proc = nil) # :yields: track, num_tracks, index
+      def initialize(seq, &block) # :yields: track, num_tracks, index
         super()
         @seq = seq
         @track = nil
         @chan_mask = 0
-        @update_block = block_given?() ? Proc.new() : proc
+        @update_block = block_given?() ? block : lambda {}
       end
 
       def header(format, ntrks, division)
