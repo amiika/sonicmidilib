@@ -23,7 +23,7 @@ def midi_to_hash(path)
   lengths = []
 
   seq.each_with_index do |track,idx|
-    if track
+
       # puts "Track: #{track.name} #{track.events.length}"
       # puts "Instrument: #{track.instrument}"
       track = track.select { |e| e.is_a?(MIDI::NoteOn) }
@@ -49,8 +49,6 @@ def midi_to_hash(path)
             total_length+=slp
             slps << slp
           end
-
-        end
       end
     end
     if melody.length>0

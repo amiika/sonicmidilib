@@ -31,7 +31,7 @@ module MIDI
         @seq = seq
         @track = nil
         @chan_mask = 0
-        @update_block = block_given?() ? block : lambda {}
+        @update_block = block if block_given?
       end
 
       def header(format, ntrks, division)
