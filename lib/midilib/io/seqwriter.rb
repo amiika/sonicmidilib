@@ -12,7 +12,7 @@ module MIDI
       def initialize(seq, midi_format = 1, &block) # :yields: num_tracks, index
         @seq = seq
         @midi_format = midi_format || 1
-        @update_block = block if block_given?
+        @update_block = block
       end
 
       # Writes a MIDI format 1 file.
