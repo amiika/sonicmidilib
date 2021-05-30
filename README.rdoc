@@ -33,7 +33,9 @@ Example usage:
     sleep midi_hash[:track_lengths].max
   end
 
-For other thigs see minilib documentation:
+For other things see minilib documentation. Requiring midilib classes directly also works, for example: 
+
+  require '~/midilib/io/seqreader'
 
 = midilib
 
